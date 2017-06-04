@@ -43,8 +43,7 @@ public class Menu {
         downloadJson.execute();
         try {
             jsonData = downloadJson.get();
-            Menu menu = new Menu();
-            productTypes = menu.parserJsonData(jsonData);
+            productTypes = parserJsonData(jsonData);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

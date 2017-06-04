@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "167168165461",
+    "project_id": "project--7349730394048419995"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167168165461:android:6d265b0203694551",
+        "android_client_info": {
+          "package_name": "com.example.lekham.lazada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167168165461-nmbfbc9aub8vff625i7dgl19amb64nkg.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "167168165461-uh2em7kqp046q3cl0fk8dstg2ga8uprv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lekham.lazada",
+            "certificate_hash": "09df61f53c7119794e8d8a6aeac05b1fb4cbd355"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhpwCprFaeWLh9Y7ON043iP_dEGkuSng0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

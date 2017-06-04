@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:padding="@dimen/padding_10">
+    android:padding="@dimen/padding_5">
 <TextView
     android:id="@+id/txtItemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textAppearance="?android:attr/textAppearanceSmall"
     android:layout_weight="1"
     android:textColor="@color/grey_600"
     android:text="dsd"/>
@@ -18,5 +18,6 @@
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_add_black_24dp"/>
 </LinearLayout>

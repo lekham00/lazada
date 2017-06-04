@@ -285,4 +285,6 @@
     <color name="bg_appbar_layout">#183544</color>
 
     <color name="bg_main">#FF6D00</color>
+    <color name="bg_facebook">#4A6EA9</color>
+    <color name="bg_google">#DA4835</color>
 </resources>

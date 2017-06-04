@@ -13,6 +13,7 @@
     <string name="menu_settings">Cài đặt</string>
     <string name="menu_policies">Chính sách</string>
     <string name="menu_help">Hổ trợ</string>
+    <string name="menu_logout">Đăng xuất</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -30,4 +31,28 @@
     <!-- end tabs-->
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <!--   start account-->
+    <string name="tabs_login">Đăng nhập</string>
+    <string name="tabs_register">Đăng ký</string>
+    <string name="lable_login_register">Đăng nhập/Đăng ký</string>
+    <string name="edit_text_email">Địa chỉ email</string>
+    <string name="edit_text_password">Mật khẩu</string>
+    <string name="edit_text_forgot_password">Quên mật khẩu?</string>
+    <string name="button_login">Đăng nhập</string>
+    <string name="text_view_login">Hoặc đăng nhập bằng</string>
+    <string name="button_facebook">Facebook</string>
+    <string name="button_google">Google</string>
+    <string name="lable_full_name">Cần điền tất cả các mục</string>
+    <string name="edit_text_fullname">Họ tên đầy đủ</string>
+    <string name="edit_text_retype_pass">Nhập lại mật khẩu</string>
+    <string name="switch_information">Tôi muốn nhận các thông báo và khuyến mãi đặc biệt từ Lazada</string>
+    <string name="lable_privacy_policy">Tôi đã đọc và hiểu các diều khoản và chính sách chung của Lazada</string>
+    <string name="button_register">Đăng ký</string>
+    <!--end account-->
+
+    <string name="facebook_app_id">136454806911514</string>
+    <string name="server_client_id">386935203420-0n875k4gpaot81odflnu0g60o36md1aq.apps.googleusercontent.com</string>
+
+    <string name="message_progress_dialog">Please watting....</string>
+
 </resources>

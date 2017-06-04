@@ -4,6 +4,8 @@ import com.example.lekham.lazada.ConnectInternet.DownloadJson;
 import com.example.lekham.lazada.Model.Main.ActionMenu.Menu;
 import com.example.lekham.lazada.Model.ObjectClass.ProductType;
 import com.example.lekham.lazada.View.Main.ViewMenu;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.concurrent.ExecutionException;
 
 public class PresenterLogicActionMenu implements IPresenterActionMenu {
 
-    public ViewMenu mViewMenu;
+    private ViewMenu mViewMenu;
+    private AccessTokenTracker mAccessTokenTracker;
+    private AccessToken mAccessToken;
 
     public PresenterLogicActionMenu(ViewMenu viewMenu) {
         mViewMenu = viewMenu;
