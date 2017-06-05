@@ -55,4 +55,14 @@
 
     <string name="message_progress_dialog">Please watting....</string>
 
+
+    <!--start error-->
+    <string name="error_pass_empty">Mục này còn thiếu</string>
+    <string name="error_pass_min_invalid">Mật khẩu phải chứa ít nhất % ký tự</string>
+    <string name="error_pass_max_invalid">Mật khẩu phải chứa nhiều nhất % ký tự</string>
+    <string name="error_pass_invalid">Mật khẩu phải chứa ít nhất một chử và số</string>
+    <string name="error_full_name_empty">Mục này còn thiếu</string>
+    <string name="error_email_empty">Mục này còn thiếu</string>
+    <string name="error_email_invalid">Email không hợp lệ</string>
+    <!--end error-->
 </resources>

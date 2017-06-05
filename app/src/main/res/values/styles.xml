@@ -23,5 +23,18 @@
 
     <declare-styleable name="EditTextPassword">
         <attr name="useStrike" format="boolean" />
+        <attr name="useErrorPass" format="boolean" />
+        <attr name="textErrorPassEmpty" format="string" />
+        <attr name="textErrorSizeMinInvalid" format="string" />
+        <attr name="textErrorSizeMaxInvalid" format="string" />
+        <attr name="textErrorTextInvalid" format="string" />
+        <attr name="textSizeMin" format="integer" />
+        <attr name="textSizeMax" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="CustomEditText">
+        <attr name="useEmail" format="boolean" />
+        <attr name="useError" format="boolean" />
+        <attr name="textErrorEmpty" format="string" />
+        <attr name="textErrorEmailInvalid" format="string" />
     </declare-styleable>
 </resources>

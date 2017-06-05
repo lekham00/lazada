@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_10">
 
-            <com.example.lekham.lazada.CustomView.EditTextEmail
+            <com.example.lekham.lazada.CustomView.CustomEditText
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
