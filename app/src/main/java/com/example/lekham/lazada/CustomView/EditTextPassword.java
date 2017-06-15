@@ -127,18 +127,19 @@ public class EditTextPassword extends EditText implements View.OnFocusChangeList
                 && !TextUtils.isEmpty(mTextErrorSizeMinInvalid) && !TextUtils.isEmpty(mTextErrorTextInvalid)
                 && !TextUtils.isEmpty(mTextErrorEmpty)) {
             if (lengthAfter != lengthBefore) {
-                if (start <= 0 && lengthBefore != 0) {
+                if (text.length() <= 0 && lengthBefore != 0) {
                     mTextInputLayout.setErrorEnabled(true);
                     mTextInputLayout.setError(mTextErrorEmpty);
-                } else if (start < mTextSizeMin) {
+                } else if (text.length() < mTextSizeMin) {
                     mTextInputLayout.setErrorEnabled(true);
                     mTextErrorSizeMinInvalid = mTextErrorSizeMinInvalid.replace("%", String.valueOf(mTextSizeMin));
                     mTextInputLayout.setError(mTextErrorSizeMinInvalid);
-                } else if (start > mTextSizeMax) {
+                } else if (text.length() > mTextSizeMax) {
                     mTextInputLayout.setErrorEnabled(true);
                     mTextErrorSizeMaxInvalid = mTextErrorSizeMaxInvalid.replace("%", String.valueOf(mTextSizeMax));
                     mTextInputLayout.setError(mTextErrorSizeMaxInvalid);
-                } else if (start >= mTextSizeMin && start <= mTextSizeMax) {
+                } else if (text.length() >= mTextSizeMin && text.length()
+                        <= mTextSizeMax) {
                     mMatcher = mPattern.matcher(text);
                     if (!mMatcher.matches()) {
                         mTextInputLayout.setErrorEnabled(true);

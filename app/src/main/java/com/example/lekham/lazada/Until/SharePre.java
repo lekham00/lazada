@@ -13,6 +13,7 @@ public class SharePre {
     private SharedPreferences.Editor mEditor;
     private static final String NAME = "SharePreLazada";
     public static String KEY_ACCESS_TOKEN = "KEY_ACCESS_TOKEN";
+    public static String KEY_ACCOUNT = "KEY_ACCOUNT";
 
     public static SharePre instantSharePre = null;
 

@@ -88,7 +88,7 @@ public class CustomEditText extends EditText implements View.OnFocusChangeListen
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
         Log.d("AAA", "start :" + start + "- lengthBefore:" + lengthBefore + "-lengthAfter:" + lengthAfter);
         handelCloseButton(start, lengthAfter);
-        handelError(start, lengthBefore, text);
+        handelError(text.length(), lengthBefore, text);
 
     }
 

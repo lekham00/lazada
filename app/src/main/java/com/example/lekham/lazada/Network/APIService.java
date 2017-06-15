@@ -1,10 +1,14 @@
 package com.example.lekham.lazada.Network;
 
 import com.example.lekham.lazada.Model.ObjectClass.NhanVien;
+import com.google.gson.JsonElement;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 
 /**
@@ -13,6 +17,11 @@ import retrofit2.http.POST;
 
 public interface APIService {
     @POST("nhanvien/add")
-    @FormUrlEncoded
-    Call<POST> registerAccount(@Body NhanVien nhanVien);
+    Call<JsonElement> registerAccount(@Body JsonElement jsonElement);
+
+    @POST("nhanvien/dangnhap")
+    Call<JsonElement> loginAccount(@Body JsonElement jsonElement);
+
+    @GET("thuonghieu/thuonghieuyeuthich")
+    Call<JsonElement> getThuongHieuYeuThich();
 }

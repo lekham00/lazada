@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 
 import com.example.lekham.lazada.R;
+import com.example.lekham.lazada.View.Account.AccountActivity;
 import com.example.lekham.lazada.View.Account.Fragment.LoginFragment;
 import com.example.lekham.lazada.View.Account.Fragment.RegisterFragment;
 
@@ -17,6 +18,7 @@ import com.example.lekham.lazada.View.Account.Fragment.RegisterFragment;
 public class ViewPagerAdapterAccount extends FragmentPagerAdapter {
 
     Context mContext;
+
     public ViewPagerAdapterAccount(FragmentManager fm, Context context) {
         super(fm);
         mContext = context;

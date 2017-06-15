@@ -9,37 +9,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class NhanVien {
     @SerializedName("MANV")
-    @Expose
     private Integer mANV;
     @SerializedName("HOTENNV")
-    @Expose
     private String hOTENNV;
     @SerializedName("TENDANGNHAP")
-    @Expose
     private String tENDANGNHAP;
     @SerializedName("MATKHAU")
-    @Expose
     private String mATKHAU;
     @SerializedName("EMAIL")
-    @Expose
     private String eMAIL;
     @SerializedName("DIACHI")
-    @Expose
     private String dIACHI;
     @SerializedName("NGAYSINH")
-    @Expose
     private String nGAYSINH;
     @SerializedName("SODT")
-    @Expose
     private Object sODT;
     @SerializedName("GIOITINH")
-    @Expose
     private Object gIOITINH;
     @SerializedName("MALOAINV")
-    @Expose
     private Integer mALOAINV;
     @SerializedName("SENDEMAIL")
-    @Expose
     private Boolean sENDEMAIL;
 
     public Integer getMANV() {

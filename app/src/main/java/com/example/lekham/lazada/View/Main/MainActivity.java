@@ -24,10 +24,12 @@ import android.widget.LinearLayout;
 import com.example.lekham.lazada.Adapter.ExpandableAdapter;
 import com.example.lekham.lazada.Adapter.ViewPagerAdapter;
 import com.example.lekham.lazada.Model.ObjectClass.ProductType;
-import com.example.lekham.lazada.Presenter.Main.Menu.Account.Login.PresenterLogin;
+import com.example.lekham.lazada.Presenter.Main.Menu.Account.Login.LoginPresenter;
 import com.example.lekham.lazada.Presenter.Main.Menu.PresenterLogicActionMenu;
 import com.example.lekham.lazada.R;
+import com.example.lekham.lazada.Until.SharePre;
 import com.example.lekham.lazada.View.Account.AccountActivity;
+import com.example.lekham.lazada.View.Account.Fragment.LoginFragment;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
     PresenterLogicActionMenu mPresenterLogicActionMenu;
     ExpandableListView mExpandableListView;
     AccessToken mAccessToken;
-    PresenterLogin mPresenterLogin;
+    LoginPresenter mLoginPresenter;
     GoogleSignInResult mGoogleSignInResult;
     GoogleApiClient mGoogleApiClient;
     List<ProductType> mProductTypeList = null;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private LinearLayout mLayoutSearch;
     private Boolean mShowMenuSearch = null;
+    private String mUserName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
         setDrawerLayout();
         setExpandableListViewForMenu();
         mPresenterLogicActionMenu = new PresenterLogicActionMenu(this);
-        mPresenterLogin = new PresenterLogin();
-        mGoogleApiClient = mPresenterLogin.GetGoogleApiClient(this, this);
+        mLoginPresenter = new LoginPresenter(null);
+        mGoogleApiClient = mLoginPresenter.GetGoogleApiClient(this, this);
         initAppBarLayout();
 
     }
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
     }
+
 
     private void setExpandableListViewForMenu() {
         mExpandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
@@ -135,10 +139,19 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
         getMenuInflater().inflate(R.menu.menu_main, menu);
         handelGetAccountFacebook(menu);
         handelGetGoogleSignInResult(menu);
-        if (mAccessToken != null || mGoogleSignInResult != null) {
+        handelGetAccountNormal(menu);
+        if (mAccessToken != null || mGoogleSignInResult != null || mUserName != null) {
             menu.findItem(R.id.menu_logout).setVisible(true);
         }
         return true;
+    }
+
+
+    private void handelGetAccountNormal(Menu menu) {
+        mUserName = SharePre.instantSharePre(getApplicationContext()).getValueString(SharePre.KEY_ACCOUNT);
+        if (mUserName != null) {
+            menu.findItem(R.id.menu_login).setTitle(mUserName);
+        }
     }
 
     @Override
@@ -152,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
         }
         switch (id) {
             case R.id.menu_login:
-                if (mAccessToken == null && mGoogleSignInResult == null)
+                if (mAccessToken == null && mGoogleSignInResult == null && mUserName == null)
                     AccountActivity.startIntent(MainActivity.this);
                 return true;
             case R.id.menu_logout:
@@ -175,6 +188,9 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
                     invalidateOptionsMenu();
                 }
             });
+        } else if (mUserName != null) {
+            SharePre.instantSharePre(getApplicationContext()).setValueString(SharePre.KEY_ACCOUNT, null);
+            invalidateOptionsMenu();
         }
 
     }
@@ -189,9 +205,9 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
     }
 
     private void handelGetGoogleSignInResult(Menu menu) {
-        if (mPresenterLogin != null) {
+        if (mLoginPresenter != null) {
             if (mGoogleApiClient != null) {
-                mGoogleSignInResult = mPresenterLogin.GetGoogleSignInResult(mGoogleApiClient);
+                mGoogleSignInResult = mLoginPresenter.GetGoogleSignInResult(mGoogleApiClient);
                 if (mGoogleSignInResult != null) {
                     menu.findItem(R.id.menu_login).setTitle(mGoogleSignInResult.getSignInAccount().getDisplayName());
                 }
@@ -200,8 +216,8 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
     }
 
     private void handelGetAccountFacebook(final Menu menu) {
-        if (mPresenterLogin != null) {
-            mAccessToken = mPresenterLogin.GetCurrentAccessToken();
+        if (mLoginPresenter != null) {
+            mAccessToken = mLoginPresenter.GetCurrentAccessToken();
             if (mAccessToken != null) {
                 GraphRequest request = GraphRequest.newMeRequest(
                         mAccessToken,
@@ -229,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenterLogin.stopTracking();
+        mLoginPresenter.stopTracking();
     }
 
     @Override
