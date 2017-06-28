@@ -110,7 +110,8 @@ public class RegisterFragment extends Fragment implements RegisterContract.View,
     public void onRegisterSuccess() {
         mOnListener.showSnackBar("Register Success");
         mDialogManager.dismiss();
-        MainActivity.startIntent(getActivity());
+//        MainActivity.startIntent(getActivity());
+        getActivity().finish();
     }
 
     @Override

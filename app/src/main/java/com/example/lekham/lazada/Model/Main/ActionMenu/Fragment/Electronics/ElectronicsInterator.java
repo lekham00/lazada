@@ -2,6 +2,7 @@ package com.example.lekham.lazada.Model.Main.ActionMenu.Fragment.Electronics;
 
 import android.util.Log;
 
+import com.example.lekham.lazada.Model.ObjectClass.SanPham;
 import com.example.lekham.lazada.Model.ObjectClass.ThuongHieu;
 import com.example.lekham.lazada.Network.APIService;
 import com.example.lekham.lazada.Network.ApiUtils;
@@ -32,20 +33,18 @@ public class ElectronicsInterator implements ElectronicsContract.Interator {
     }
 
     @Override
-    public void performFetListBrand() {
-
-        mApiService.getThuongHieuYeuThich().enqueue(new Callback<JsonElement>() {
+    public void performFetListBrand(int id) {
+        mApiService.getThuongHieuYeuThich(id).enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                Log.d("LK", "onResponse");
+                Log.d("LK", "onResponse Brand");
                 if (response.isSuccessful()) {
                     JsonElement jsonElement = response.body();
 
                     if (jsonElement != null && jsonElement.isJsonArray()) {
                         String jsonString = jsonElement.getAsJsonArray().toString();
                         try {
-                            List<ThuongHieu> thuongHieus = JsonParser.parseStringToList(jsonString,ThuongHieu[].class
-                            );
+                            List<ThuongHieu> thuongHieus = JsonParser.parseStringToList(jsonString, ThuongHieu[].class);
                             mElectronicsListener.onResultGetListBrand(thuongHieus);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -57,9 +56,39 @@ public class ElectronicsInterator implements ElectronicsContract.Interator {
 
             @Override
             public void onFailure(Call<JsonElement> call, Throwable t) {
-                Log.d("LK", "onFailure :" + t.getMessage().toString());
+                Log.d("LK", "onFailure Brand :" + t.getMessage().toString());
                 mElectronicsListener.onResultGetListBrand(null);
             }
         });
     }
+
+    @Override
+    public void performGetListProduct(int id) {
+        mApiService.getSanPhamBanChay(id).enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                Log.d("LK", "onResponse Product");
+                if (response.isSuccessful()) {
+                    JsonElement jsonElement = response.body();
+
+                    if (jsonElement != null && jsonElement.isJsonArray()) {
+                        String jsonString = jsonElement.getAsJsonArray().toString();
+                        try {
+                            List<SanPham> sanPhams = JsonParser.parseStringToList(jsonString, SanPham[].class);
+                            mElectronicsListener.onResultGetListProduct(sanPhams);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            mElectronicsListener.onResultGetListBrand(null);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                Log.d("LK", "onFailure Product :" + t.getMessage().toString());
+            }
+        });
+    }
+
 }

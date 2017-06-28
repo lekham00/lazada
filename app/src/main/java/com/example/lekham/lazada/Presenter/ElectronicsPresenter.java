@@ -2,6 +2,7 @@ package com.example.lekham.lazada.Presenter;
 
 import com.example.lekham.lazada.Model.Main.ActionMenu.Fragment.Electronics.ElectronicsContract;
 import com.example.lekham.lazada.Model.Main.ActionMenu.Fragment.Electronics.ElectronicsInterator;
+import com.example.lekham.lazada.Model.ObjectClass.SanPham;
 import com.example.lekham.lazada.Model.ObjectClass.ThuongHieu;
 
 import java.util.List;
@@ -21,12 +22,22 @@ public class ElectronicsPresenter implements ElectronicsContract.Presenter, Elec
     }
 
     @Override
-    public void getListBrand() {
-        mElectronicsInterator.performFetListBrand();
+    public void getListBrand(int id) {
+        mElectronicsInterator.performFetListBrand(id);
+    }
+
+    @Override
+    public void getListProduct(int id) {
+        mElectronicsInterator.performGetListProduct(id);
     }
 
     @Override
     public void onResultGetListBrand(List<ThuongHieu> thuongHieuList) {
         mView.onResultGetListBrand(thuongHieuList);
+    }
+
+    @Override
+    public void onResultGetListProduct(List<SanPham> sanPhamList) {
+        mView.onResultGetListProduct(sanPhamList);
     }
 }

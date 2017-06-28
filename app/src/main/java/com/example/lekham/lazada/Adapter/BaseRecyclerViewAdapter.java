@@ -32,13 +32,14 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
 
 
     public BaseRecyclerViewAdapter(Context context) {
-        this(context, null);
+        this(context, null, null);
     }
 
-    public BaseRecyclerViewAdapter(Context context, OnRecyclerItemClicked onRecyclerItemClicked) {
+    public BaseRecyclerViewAdapter(Context context, OnRecyclerItemClicked onRecyclerItemClicked, List<T> items) {
         super();
         mContext = context;
         mOnRecyclerItemClicked = onRecyclerItemClicked;
+        mItems = items;
     }
 
     @Override

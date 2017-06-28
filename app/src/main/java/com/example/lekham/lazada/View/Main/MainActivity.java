@@ -2,12 +2,14 @@ package com.example.lekham.lazada.View.Main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -24,12 +26,17 @@ import android.widget.LinearLayout;
 import com.example.lekham.lazada.Adapter.ExpandableAdapter;
 import com.example.lekham.lazada.Adapter.ViewPagerAdapter;
 import com.example.lekham.lazada.Model.ObjectClass.ProductType;
+import com.example.lekham.lazada.Model.ObjectClass.ThucDon;
+import com.example.lekham.lazada.Model.TabLayoutMenu.TabLayoutMenuContract;
 import com.example.lekham.lazada.Presenter.Main.Menu.Account.Login.LoginPresenter;
 import com.example.lekham.lazada.Presenter.Main.Menu.PresenterLogicActionMenu;
+import com.example.lekham.lazada.Presenter.TabLayoutPresenter;
 import com.example.lekham.lazada.R;
 import com.example.lekham.lazada.Until.SharePre;
+import com.example.lekham.lazada.Until.TabLayoutMenu;
 import com.example.lekham.lazada.View.Account.AccountActivity;
 import com.example.lekham.lazada.View.Account.Fragment.LoginFragment;
+import com.example.lekham.lazada.View.Main.Fragment.ElectronicsFragment;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
@@ -46,7 +53,9 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleApiClient.OnConnectionFailedListener, AppBarLayout.OnOffsetChangedListener {
+public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleApiClient.OnConnectionFailedListener, AppBarLayout.OnOffsetChangedListener, TabLayoutMenuContract.View {
+
+    public static final String TAG = MainActivity.class.getSimpleName();
 
     TabLayout mTabLayout;
     ViewPager mViewPager;
@@ -64,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
     private LinearLayout mLayoutSearch;
     private Boolean mShowMenuSearch = null;
     private String mUserName = null;
+    private TabLayoutPresenter mTabLayoutPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +82,22 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        setViewPager();
+        updateTabLayoutMenu();
         setDrawerLayout();
         setExpandableListViewForMenu();
         mPresenterLogicActionMenu = new PresenterLogicActionMenu(this);
         mLoginPresenter = new LoginPresenter(null);
         mGoogleApiClient = mLoginPresenter.GetGoogleApiClient(this, this);
         initAppBarLayout();
+    }
 
+    private void updateTabLayoutMenu() {
+        if (TabLayoutMenu.initTabLayoutMenu(getApplicationContext()).getListTabHost().size() == 0) {
+            mTabLayoutPresenter = new TabLayoutPresenter(this);
+            mTabLayoutPresenter.perfromGetMenuForTabLayout(getApplicationContext());
+        } else {
+            setViewPager(TabLayoutMenu.initTabLayoutMenu(getApplicationContext()).getListTabHost());
+        }
     }
 
     private void initAppBarLayout() {
@@ -95,15 +113,21 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
         activity.startActivity(intent);
     }
 
+    public static void startIntent(Activity activity, int flags) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.setFlags(flags);
+        activity.startActivity(intent);
+    }
+
 
     private void setExpandableListViewForMenu() {
         mExpandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
     }
 
-    private void setViewPager() {
+    private void setViewPager(List<ThucDon> thucDons) {
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getApplicationContext());
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getApplicationContext(), thucDons);
         mViewPager.setAdapter(viewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
@@ -117,7 +141,15 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
                 super.onDrawerOpened(drawerView);
                 if (mProductTypeList == null) {
                     if (mPresenterLogicActionMenu != null) {
-                        mPresenterLogicActionMenu.GetAllListDataMenu(0);
+                        AsyncTask asyncTask = new AsyncTask() {
+                            @Override
+                            protected Object doInBackground(Object[] params) {
+                                mPresenterLogicActionMenu.GetAllListDataMenu(0);
+                                return null;
+                            }
+                        };
+                        asyncTask.execute();
+
                     }
                 }
             }
@@ -261,5 +293,19 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
         } else if (alpha == 0) {
             mShowMenuSearch = true;
         }
+    }
+
+    @Override
+    public void resultMenuTabLayout(List<ThucDon> thucDons) {
+        if (thucDons != null && thucDons.size() > 0) {
+            TabLayoutMenu.initTabLayoutMenu(getApplicationContext()).saveListTabHost(thucDons);
+            setViewPager(thucDons);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        invalidateOptionsMenu();
     }
 }

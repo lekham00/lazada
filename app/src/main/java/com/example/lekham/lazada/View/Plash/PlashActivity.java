@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.lekham.lazada.R;
+import com.example.lekham.lazada.Until.TabLayoutMenu;
 import com.example.lekham.lazada.View.Main.MainActivity;
 
 /**
@@ -19,6 +20,7 @@ public class PlashActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plash_activity);
+        TabLayoutMenu.initTabLayoutMenu(getApplicationContext()).saveFragmentForTabLayout();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -35,7 +37,7 @@ public class PlashActivity extends AppCompatActivity {
 
     public void startIntent() {
         Intent intent = new Intent(PlashActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }

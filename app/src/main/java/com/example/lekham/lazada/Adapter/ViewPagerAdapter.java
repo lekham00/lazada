@@ -4,8 +4,11 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.ListFragment;
 
+import com.example.lekham.lazada.Model.ObjectClass.ThucDon;
 import com.example.lekham.lazada.R;
+import com.example.lekham.lazada.Until.TabLayoutMenu;
 import com.example.lekham.lazada.View.Main.Fragment.BabyToysFragment;
 import com.example.lekham.lazada.View.Main.Fragment.ElectronicsFragment;
 import com.example.lekham.lazada.View.Main.Fragment.FashionFragment;
@@ -27,24 +30,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     List<Fragment> fragmentList = new ArrayList<Fragment>();
     List<String> stringList = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager fm, Context context) {
+    public ViewPagerAdapter(FragmentManager fm, Context context, List<ThucDon> thucDons) {
         super(fm);
-        fragmentList.add(new HighlightsFragment());
-        fragmentList.add(new TaobaoCollectionFragment());
-        fragmentList.add(new FashionFragment());
-        fragmentList.add(new HealthBeautyFragment());
-        fragmentList.add(new BabyToysFragment());
-        fragmentList.add(new HomeLivingFragment());
-        fragmentList.add(new ElectronicsFragment());
-        fragmentList.add(new MotorsFragment());
-        stringList.add(context.getResources().getString(R.string.tabs_highlights));
-        stringList.add(context.getResources().getString(R.string.tabs_taobao_collection));
-        stringList.add(context.getResources().getString(R.string.tabs_fashion));
-        stringList.add(context.getResources().getString(R.string.tabs_health_beauty));
-        stringList.add(context.getResources().getString(R.string.tabs_baby_toys));
-        stringList.add(context.getResources().getString(R.string.tabs_home_living));
-        stringList.add(context.getResources().getString(R.string.tabs_electronics));
-        stringList.add(context.getResources().getString(R.string.tabs_motors));
+        for (ThucDon thucDon : thucDons) {
+            Fragment fragment = TabLayoutMenu.initTabLayoutMenu(context).getFragmentTabLayout(thucDon.getTENTHUCDON().toString().hashCode());
+            if (fragment != null) {
+                stringList.add(thucDon.getTENTHUCDON().toString());
+                fragmentList.add(fragment);
+                TabLayoutMenu.initTabLayoutMenu(context).saveThucDonHashMap(thucDon.getTENTHUCDON().toString().hashCode(), thucDon);
+
+            }
+        }
     }
 
     @Override

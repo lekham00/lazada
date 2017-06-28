@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btnSendToHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAllCaps="false"
+        android:background="@android:color/white"
+        android:drawableTop="@drawable/icon_home"
+        android:text="@string/button_dialog_Send_To_Home" />
+
+    <Button
+        android:id="@+id/btnSafe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAllCaps="false"
+        android:background="@android:color/white"
+        android:drawableTop="@drawable/icon_safe"
+        android:text="@string/button_dialog_safe" />
+
+    <Button
+        android:id="@+id/btnSecurity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:drawableTop="@drawable/icon_security"
+        android:text="@string/button_dialog_security" />
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.lekham.lazada.Model.Main.ActionMenu.Fragment.Electronics;
 
+import com.example.lekham.lazada.Model.ObjectClass.SanPham;
 import com.example.lekham.lazada.Model.ObjectClass.ThuongHieu;
 
 import java.util.List;
@@ -11,15 +12,25 @@ import java.util.List;
 public interface ElectronicsContract {
     interface View {
         void onResultGetListBrand(List<ThuongHieu> thuongHieuList);
+
+        void onResultGetListProduct(List<SanPham> sanPhamList);
     }
+
     interface Presenter {
-        void getListBrand();
+        void getListBrand(int id);
+
+        void getListProduct(int id);
     }
 
     interface Interator {
-        void performFetListBrand();
+        void performFetListBrand(int id);
+
+        void performGetListProduct(int id);
     }
+
     interface OnElectronicsListener {
         void onResultGetListBrand(List<ThuongHieu> thuongHieuList);
+
+        void onResultGetListProduct(List<SanPham> sanPhamList);
     }
 }

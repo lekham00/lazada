@@ -14,6 +14,7 @@ public class SharePre {
     private static final String NAME = "SharePreLazada";
     public static String KEY_ACCESS_TOKEN = "KEY_ACCESS_TOKEN";
     public static String KEY_ACCOUNT = "KEY_ACCOUNT";
+    public static String KEY_MODE = "KEY_MODE";
 
     public static SharePre instantSharePre = null;
 
@@ -37,6 +38,15 @@ public class SharePre {
 
     public String getValueString(String key) {
         return mSharedPreferences.getString(key, null);
+    }
+
+    public void setValueInt(String key, int value) {
+        mEditor.putInt(key, value);
+        mEditor.commit();
+    }
+
+    public int getValueInt(String key) {
+        return mSharedPreferences.getInt(key, -1);
     }
 
 }

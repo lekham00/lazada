@@ -23,11 +23,9 @@ import com.example.lekham.lazada.Presenter.Main.Menu.Account.Login.LoginPresente
 import com.example.lekham.lazada.R;
 import com.example.lekham.lazada.Until.Keyboard;
 import com.example.lekham.lazada.Until.SharePre;
-import com.example.lekham.lazada.View.Main.MainActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
@@ -124,7 +122,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Goo
     FacebookCallback<LoginResult> callbackFacebook = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
-            MainActivity.startIntent(getActivity());
+//            MainActivity.startIntent(getActivity());
+            getActivity().finish();
         }
 
         @Override
@@ -164,7 +163,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Goo
             mDialogManager.dismiss();
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                MainActivity.startIntent(getActivity());
+//                MainActivity.startIntent(getActivity(), Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().finish();
             }
         } else {
             mDialogManager.dismiss();
@@ -196,7 +196,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Goo
         if (nhanVien != null) {
             mOnListenerLogin.showSnackBar("Login account success");
             SharePre.instantSharePre(getContext()).setValueString(SharePre.KEY_ACCOUNT, nhanVien.getHOTENNV());
-            MainActivity.startIntent(getActivity());
+//            MainActivity.startIntent(getActivity(), Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            getActivity().finish();
         } else {
             mOnListenerLogin.showSnackBar("Login account failure");
         }

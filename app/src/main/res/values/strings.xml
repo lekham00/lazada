@@ -21,13 +21,13 @@
 
     <!--start tabs-->
     <string name="tabs_highlights">Khuyến Mãi</string>
-    <string name="tabs_taobao_collection">Đồng giá dưới 199k</string>
-    <string name="tabs_fashion">Thời trang</string>
-    <string name="tabs_health_beauty">Làm đẹp</string>
-    <string name="tabs_baby_toys">Đồ chơi trẻ em</string>
-    <string name="tabs_home_living">Nhà cửa &#38; Đời sống</string>
-    <string name="tabs_electronics">Điện tử</string>
-    <string name="tabs_motors">Ô tô &#38; Xe máy</string>
+    <string name="tabs_taobao_collection">Voucher Giảm Giá</string>
+    <string name="tabs_fashion">Thời Trang</string>
+    <string name="tabs_health_beauty">Làm Đẹp</string>
+    <string name="tabs_baby_toys">Đồ Chơi Cho Bé</string>
+    <string name="tabs_home_living">Nhà Cửa &#38; Đời Sống</string>
+    <string name="tabs_electronics">Điện Tử</string>
+    <string name="tabs_motors">Ô Tô &#38; Xe Máy</string>
     <!-- end tabs-->
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
@@ -66,4 +66,29 @@
     <string name="error_email_empty">Mục này còn thiếu</string>
     <string name="error_email_invalid">Email không hợp lệ</string>
     <!--end error-->
+
+    <!--  start dialog-->
+    <string name="text_title_dialog_Send_To_Home">Giao hàng tận nơi</string>
+    <string name="text_title_dialog_safe">Thương gia đáng tin cậy</string>
+    <string name="text_title_dialog_security">Bảo vệ người mua hàng</string>
+    <string name="text_content_dialog_Send_To_Home">Hãy chọn giải pháp trả tiền mặt cho nhân viên giao hàng khi được nhận hàng</string>
+    <string name="text_content_dialog_safe">Các thương nhân thành viên đều được chọn lọc cẩn thận và đạt cam kết về chất lượng sản phẩm</string>
+    <string name="text_content_dialog_security">Bạn có thể hoàn trả hàng trong vòng 14 ngày kể từ khi mua sản phẩm nếu bạn không hài lòng với sản phẩm đã mua</string>
+    <string name="button_dialog_ok">OK</string>
+    <string name="button_dialog_Send_To_Home">Giao hàng tận \n nơi</string>
+    <string name="button_dialog_safe">Thương gia\n đáng tin cậy</string>
+    <string name="button_dialog_security">Bảo vệ người \n mua hàng</string>
+    <!--  end dialog-->
+
+    <!--start detail-->
+    <string name="button_fiter">Lọc</string>
+    <string name="button_sort">Sắp sếp</string>
+    <!--end detail-->
+    <!--start detail product viewpager-->
+    <string name="tabs_view_pager_overview">Tổng quan sản phẩm</string>
+    <string name="tabs_view_pager_product_detail">Chi tiết sản phẩm</string>
+    <string name="tabs_view_pager_qa">Hỏi đáp</string>
+    <string name="tabs_view_pager_rating_review">Đánh giá và nhận xét</string>
+    <!--end detail product viewpager-->
+
 </resources>

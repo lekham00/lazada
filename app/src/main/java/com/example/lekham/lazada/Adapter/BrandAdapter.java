@@ -12,13 +12,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.lekham.lazada.Model.ObjectClass.ThuongHieu;
 import com.example.lekham.lazada.R;
 
+import java.util.List;
+
 /**
  * Created by Le Kham on 6/15/2017.
  */
 
 public class BrandAdapter extends BaseRecyclerViewAdapter<ThuongHieu> {
-    public BrandAdapter(Context context, OnRecyclerItemClicked onRecyclerItemClicked) {
-        super(context, onRecyclerItemClicked);
+    public BrandAdapter(Context context, OnRecyclerItemClicked onRecyclerItemClicked, List<ThuongHieu> thuongHieuList) {
+        super(context, onRecyclerItemClicked, thuongHieuList);
     }
 
     @Override
@@ -35,7 +37,7 @@ public class BrandAdapter extends BaseRecyclerViewAdapter<ThuongHieu> {
             txtTitle.setText(item.getTENTH());
             Glide.with(getContext()).load(item.getHINHTHUONGHIEU())
                     .thumbnail(0.5f)
-                    .crossFade()
+                    .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageIcon);
         }
