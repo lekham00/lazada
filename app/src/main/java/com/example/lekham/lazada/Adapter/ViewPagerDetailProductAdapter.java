@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.lekham.lazada.R;
 import com.example.lekham.lazada.View.DetailProduct.Fragment.OverviewFragment;
@@ -15,7 +16,7 @@ import com.example.lekham.lazada.View.DetailProduct.Fragment.RatingReviewFragmen
  * Created by Le Kham on 6/27/2017.
  */
 
-public class ViewPagerDetailProductAdapter extends FragmentPagerAdapter {
+public class ViewPagerDetailProductAdapter extends FragmentStatePagerAdapter {
 
     Context mContext;
 

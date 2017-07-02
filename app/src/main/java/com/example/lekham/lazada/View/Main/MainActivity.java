@@ -36,6 +36,7 @@ import com.example.lekham.lazada.Until.SharePre;
 import com.example.lekham.lazada.Until.TabLayoutMenu;
 import com.example.lekham.lazada.View.Account.AccountActivity;
 import com.example.lekham.lazada.View.Account.Fragment.LoginFragment;
+import com.example.lekham.lazada.View.BaseActivity;
 import com.example.lekham.lazada.View.Main.Fragment.ElectronicsFragment;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -53,7 +54,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleApiClient.OnConnectionFailedListener, AppBarLayout.OnOffsetChangedListener, TabLayoutMenuContract.View {
+public class MainActivity extends BaseActivity implements ViewMenu, GoogleApiClient.OnConnectionFailedListener, AppBarLayout.OnOffsetChangedListener, TabLayoutMenuContract.View {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -79,9 +80,7 @@ public class MainActivity extends AppCompatActivity implements ViewMenu, GoogleA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+        handelToolbar("");
         updateTabLayoutMenu();
         setDrawerLayout();
         setExpandableListViewForMenu();

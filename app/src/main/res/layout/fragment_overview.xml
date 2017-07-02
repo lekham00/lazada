@@ -27,8 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:lines="2"
-                    android:text="May lam mat khong khi Khan"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/size_15" />
 
@@ -36,25 +35,19 @@
                     android:id="@+id/txtPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1.0099.1989"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="@dimen/size_16" />
 
                 <RatingBar
                     android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-                    android:transformPivotX="0dp"
-                    android:transformPivotY="0dp" />
+                    android:layout_height="wrap_content" />
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPager"
+                <com.daimajia.slider.library.SliderLayout
+                    android:id="@+id/slider"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp">
-
-                </android.support.v4.view.ViewPager>
+                    android:layout_height="300dp" />
             </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -70,10 +63,42 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"></LinearLayout>
+                android:background="@android:color/white"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imgShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imgFavorite"
+                    android:layout_toStartOf="@+id/imgFavorite"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_share_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/imgFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:layout_marginRight="@dimen/padding_10"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_favorite_border_black_24dp" />
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,14 +112,14 @@
                     android:background="@color/brown_400" />
 
                 <TextView
+                    android:id="@+id/txtMoreProduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:lines="1"
                     android:padding="@dimen/padding_10"
-                    android:text="Xem thêm bởi tooo"
-                    android:textAllCaps="true"
+                    android:text="Các sản phẩm của"
                     android:textColor="@android:color/holo_blue_bright"
                     android:textSize="@dimen/size_15" />
             </LinearLayout>
@@ -113,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:text="Được bán và giao hàng bởi"
+                    android:text="@string/text_view_sold_fulfilled"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/size_15" />
 
@@ -128,39 +153,52 @@
                     android:textStyle="bold" />
 
                 <RatingBar
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-                    android:transformPivotX="0dp"
-                    android:transformPivotY="0dp" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="Đảm bảo chính hảng 100%"
+                    android:text="@string/text_view_security_1"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/size_15" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="Thanh toán đảm bảo"
+                    android:text="@string/text_view_security_2"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/size_15" />
 
-                <Button
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:drawableLeft="@drawable/icon_shield"
-                    android:text="Bảo vệ người \n mua hàng 100%"
-                    android:textAllCaps="false" />
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_10"
+                        android:background="@android:color/white"
+                        android:drawableLeft="@drawable/icon_shield"
+                        android:text="@string/button_security_1"
+                        android:textAllCaps="false" />
+
+
+                    <Button
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:drawableLeft="@drawable/status_shield"
+                        android:text="@string/button_security_1"
+                        android:textAllCaps="false" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -176,27 +214,17 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:text="Chi tiết sản phẩm"
+                    android:text="@string/text_view_product_detail"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/size_15" />
 
                 <TextView
+                    android:id="@+id/txtInformationDetailProduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="Mô tả sản phẩm"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/size_15" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="Thanh toán đảm bảo"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/size_15" />
 
                 <View
                     android:layout_width="match_parent"
@@ -210,13 +238,68 @@
                     android:gravity="center"
                     android:lines="1"
                     android:padding="@dimen/padding_10"
-                    android:text="Xem tất cả chi tiết sản phẩm"
-                    android:textAllCaps="true"
+                    android:text="@string/text_view_show_all_product_detail"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:textSize="@dimen/size_15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_5"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@string/text_view_rating_review"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_15" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/txtWritterReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="@string/text_view_writter_rating_review"
+                        android:textColor="@android:color/holo_blue_bright"
+                        android:textSize="@dimen/size_15" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/brown_400" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="@dimen/padding_10"
+                    android:text="@string/text_view_show_all_rating_review"
                     android:textColor="@android:color/holo_blue_bright"
                     android:textSize="@dimen/size_15" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-
 </android.support.design.widget.CoordinatorLayout>

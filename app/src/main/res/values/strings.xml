@@ -80,7 +80,7 @@
     <string name="button_dialog_security">Bảo vệ người \n mua hàng</string>
     <!--  end dialog-->
 
-    <!--start detail-->
+    <!--start list product-->
     <string name="button_fiter">Lọc</string>
     <string name="button_sort">Sắp sếp</string>
     <!--end detail-->
@@ -90,5 +90,30 @@
     <string name="tabs_view_pager_qa">Hỏi đáp</string>
     <string name="tabs_view_pager_rating_review">Đánh giá và nhận xét</string>
     <!--end detail product viewpager-->
+
+    <!--start detail product page-->
+    <string name="text_view_more_product">Các sản phẩm của</string>
+    <string name="text_view_sold_fulfilled">Được bán và giao hàng bởi</string>
+    <string name="text_view_product_detail">Chi tiết sản phẩm</string>
+    <string name="text_view_security_1">Đảm bảo chính hảng 100%</string>
+    <string name="text_view_security_2">Thanh toán đảm bảo</string>
+    <string name="text_view_security_3">Đánh giá và nhận xét</string>
+    <string name="text_view_security_4">Đánh giá và nhận xét</string>
+    <string name="button_security_1">Bảo vệ người    \n  mua hàng 100%</string>
+    <string name="button_security_2">Đảm bảo   \n  sự hài lòng</string>
+    <string name="text_view_show_all_product_detail">Xem tất cả chi tiết sản phẩm</string>
+    <string name="text_view_rating_review">Đáng giá và nhận xét</string>
+    <string name="text_view_writter_rating_review">Viết bài đánh giá</string>
+    <string name="text_view_show_all_rating_review">Xem mọi nhận xét</string>
+    <!--end detail product page-->
+
+    <!--start pager rating review-->
+    <string name="text_view_review_rate_product">Nhận xét về sản phẩm này</string>
+    <string name="text_view_review_tap_to_rate">Chọn để đánh giá</string>
+    <string name="text_view_review_name">Tên của bạn</string>
+    <string name="text_view_review_title">Tựa đề bài nhận xét</string>
+    <string name="text_view_review_description">Mô tả nhận xét</string>
+    <string name="text_view_review_submit">Đăng nhận xét</string>
+    <!--end pager rating review-->
 
 </resources>

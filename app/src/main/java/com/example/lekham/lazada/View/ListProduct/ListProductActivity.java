@@ -12,13 +12,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.lekham.lazada.R;
+import com.example.lekham.lazada.View.BaseActivity;
 
 /**
  * Created by Le Kham on 6/22/2017.
  */
 
-public class ListProductActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
+public class ListProductActivity extends BaseActivity {
     public static final String ID_KEY = "ID_KEY";
     public static final String TITLE_KEY = "TITLE_KEY";
 
@@ -33,9 +33,7 @@ public class ListProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acticity_list_product);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        handelToolbar("");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             setTitle(bundle.getString(TITLE_KEY));
@@ -43,14 +41,6 @@ public class ListProductActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.frameLayoutContent, ListProductFragment.initDetailFragment(bundle), ListProductFragment.TAG);
             fragmentTransaction.commit();
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == android.R.id.home)
-            onBackPressed();
-        return super.onOptionsItemSelected(item);
     }
 }
 

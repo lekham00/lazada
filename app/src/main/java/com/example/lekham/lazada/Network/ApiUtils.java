@@ -11,7 +11,8 @@ public class ApiUtils {
     private ApiUtils() {
     }
 
-    public static final String BASE_URL = "http://192.168.1.6/lazadaserver/api/";
+    public static final String DOMAN = "http://192.168.1.6/lazadaserver";
+    public static final String BASE_URL = DOMAN + "/api/";
 
     public static APIService getApiService() {
         return RetrofitClient.getClient(BASE_URL).create(APIService.class);
